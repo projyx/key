@@ -5,5 +5,12 @@ body {
 @media (prefers-color-scheme: dark) {
     body {
         background: black;
+        color: #fff;
     }
+}
+
+
+block, card, box {
+    display: flex;
+    flex-direction: column;
 }
