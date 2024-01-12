@@ -10,8 +10,8 @@
 
 .page-home .block-keycode .qrcode {
     background: white;
-    border: 10px solid;
-    border-radius: 10px;
+    border: 20px solid;
+    border-radius: 20px;
     box-sizing: border-box;
     display: block;
     height: 240px;
