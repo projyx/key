@@ -9,11 +9,16 @@
 }
 
 .page-home .block-keycode .qrcode {
+    background: white;
+    border: 10px solid;
+    border-radius: 10px;
+    box-sizing: border-box;
     display: block;
     height: 240px;
     margin: 20px auto;
     position: relative;
     max-width: 100%;
+    transform: rotate(45deg) scale(.7);
     width: 240px;
 }
 

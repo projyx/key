@@ -1,12 +1,16 @@
 window.onload = function() {
     var typeNumber = 4;
     var errorCorrectionLevel = 'L';
-    var qr = qrcode(typeNumber, errorCorrectionLevel);
     var obj = iiicoin();
     const input = JSON.stringify(obj, null, 2);
-    qr.addData(input);
-    qr.make();
-    document.getElementById('qrcode').innerHTML = qr.createImgTag();
+    var qrcode = new QRCode(document.getElementById("qrcode"),{
+        text: "https://github.com/iiicoin/iiicoin",
+        width: 128,
+        height: 128,
+        colorDark: "#000000",
+        colorLight: "#ffffff",
+        correctLevel: QRCode.CorrectLevel.H
+    });
 }
 
 function iiicoin() {
