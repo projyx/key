@@ -1,5 +1,48 @@
 window.onload = function() {
     console.log(2, "window.onload");
+    
+    firebase.initializeApp({
+        apiKey: "AIzaSyA2K41RYhtZm4nx2F1liIJ8ly4ejy6gqc8",
+        authDomain: "pro-jyx.firebaseapp.com",
+        projectId: "pro-jyx",
+        appId: "1:492439614306:web:58cffeca539613b875b23b"
+    });
+    firebase.auth().onAuthStateChanged(async(user)=>{
+        if (user) {
+            window.user = user;
+            0 < 1 ? console.log(42, 'index.user', {
+                user
+            }) : null;
+            try {
+                var uid = user.uid;
+                var user = await github.user.self();
+                //console.log(user);
+                var avatar_url = user.avatar_url;
+
+                document.body.setAttribute('uid', uid)
+                localStorage.setItem('githubAccessToken', token);
+
+                localStorage.setItem("user", user.login);
+
+                //rout.er(window.location.pathname);
+            } catch (e) {
+                console.log(56, 'onAuthStateChanged', {
+                    e
+                });
+
+                //rout.er(window.location.pathname);
+            }
+        } else {
+            window.user = null;
+            localStorage.removeItem('githubAccessToken');
+            Array.from(document.body.querySelectorAll(".avatar-image")).forEach(function(avatar) {
+                //avatar.innerHTML = "";
+            });
+            rout.er(window.location.pathname);
+        }
+        //dom.body.dataset.load = "ed";
+    }
+    );
 }
 
 window.Crypto = crypt = cx = {
@@ -59,4 +102,41 @@ function iiicoin() {
     };
     //console.log(39, obj, arr);
     return obj;
+}
+
+function request(resource, options) {
+    return new Promise(async function(resolve, reject) {
+        await fetch(resource, options).then(async(response)=>{
+            //console.log(4, response, options);
+            if (!response.ok) {
+                return response.text().then(text=>{
+                    var text = JSON.stringify({
+                        code: response.status,
+                        message: JSON.parse(text)
+                    });
+                    throw new Error(text);
+                }
+                )
+            }
+            return response.text();
+        }
+        ).then(response=>{
+            try {
+                response = JSON.parse(response);
+                resolve(response);
+            } catch (err) {
+                resolve(response);
+            }
+        }
+        ).catch(error=>{
+            console.log("function_get 404 ERROR", {
+                error,
+                resource,
+                options
+            });
+            reject(error);
+        }
+        )
+    }
+    );
 }
